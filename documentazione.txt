@@ -1,0 +1,94 @@
+///SCUOLE///
+ESEMPIO-----visualizzazione delle scuole
+curl http://localhost:8080/scuole 
+RICHIESTA:
+GET /scuole   ---> ScuoleController:index
+RISPOSTA:
+Status code:200
+[{"id": 1, "nome":"ITIS Meucci", "indirizzo": "Via del Filarete, 17"},{"id":"3","nome":"Peano","indirizzo":"Piazza la bomba e scappa"}];
+RISPOSTA CON ERRORE:
+Status code:404
+{"msg": "Nessuna scuola presente"}
+
+ESEMPIO-----visualizzazione delle scuole con id
+curl http://localhost:8080/scuole/3
+RICHIESTA:
+GET /scuole/3   ---> ScuoleController:view
+RISPOSTA:
+Status code:200
+[{"id":"3","nome":"Pano","indirizzo":"Pizza la bomba e scappa"}];
+RISPOSTA CON ERRORE:
+Status code:404
+{"msg": "Scuola non trovata"}
+
+ESEMPIO-----Creazione di una scuola
+curl -X POST http://localhost:8080/scuole/create -H "Content-Type: application/json" -d '{"nome": "Pano", "indirizzo": "Pizza la bomba e scappa"}'
+RICHIESTA:
+POST /scuole/create   ---> ScuoleController:create
+RISPOSTA:
+Status code:200
+{"msg": "nome"}
+
+ESEMPIO-----Aggiornamento dei dati di una scuola
+curl -X PUT http://localhost:8080/scuole/update -H "Content-Type: application/json" -d '{"nome": "Peano", "indirizzo": "Piazza la bomba e scappa", "id": "3"}'
+RICHIESTA:
+POST /scuole/update   ---> ScuoleController:update
+RISPOSTA:
+Status code:200
+{"msg": "nome"}
+
+ESEMPIO-----Cancellazione di una scuola
+curl -X DELETE http://localhost:8080/scuole/destroy -H "Content-Type: application/json" -d '{"id": "3"}'
+RICHIESTA:
+POST /scuole/destroy   ---> ScuoleController:destroy
+RISPOSTA:
+Status code:200
+{"msg": "+1 KILL"}
+
+
+///DOCENTI///
+ESEMPIO-----visualizzazione tutti i docenti di una scuola
+curl http://localhost:8080/scuole/3/docenti 
+RICHIESTA:
+GET /scuole/3/docenti   ---> DocentiController:view
+RISPOSTA:
+Status code:200
+[{"id":"4","nome":"Tommaso","cognome":"Frediani","scuola_id":"3"},{"id":"6","nome":"Adele","cognome":"Baccelli","scuola_id":"3"}];
+RISPOSTA ERRORE:
+Status code:404
+{"msg": "Scuola senza docenti"}
+
+ESEMPIO-----visualizzazione di un docente in particolare
+curl http://localhost:8080/scuole/docente/4 
+RICHIESTA:
+GET /scuole/docente/4  ---> DocentiController:search
+RISPOSTA:
+Status code:200
+[{"id":"4","nome":"Tommaso","cognome":"Frediani","scuola_id":"3"}];
+RISPOSTA ERRORE:
+Status code:404
+{"msg": "Docente non trovato"}
+
+ESEMPIO-----Creazione di un docente dentro una scuola
+curl -X POST http://localhost:8080/scuole/docente/create -H "Content-Type: application/json" -d '{"nome": "Dario", "cognome": "Chen", "scuola_id": "1"}'
+RICHIESTA:
+POST /scuole/docente/create  ---> DocentiController:create
+RISPOSTA:
+Status code:200
+{"msg": "nome"}
+
+ESEMPIO-----Aggiornamento di un docente 
+curl -X PUT http://localhost:8080/scuole/docente/update -H "Content-Type: application/json" -d '{"nome": "Dalio", "cognome": "Chen", "id": "7"}'
+RICHIESTA:
+POST /scuole/docente/update  ---> DocentiController:update
+RISPOSTA:
+Status code:200
+{"msg": "nome"}
+
+ESEMPIO-----Eliminazione di un docente 
+curl -X DELETE http://localhost:8080/scuole/docente/destroy -H "Content-Type: application/json" -d '{"id": "7"}'
+RICHIESTA:
+POST /scuole/docente/destroy  ---> DocentiController:destroy
+RISPOSTA:
+Status code:200
+{"msg": "+1 KILL"}
