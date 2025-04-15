@@ -54,18 +54,18 @@ GET /scuole/3/docenti   ---> DocentiController:view
 RISPOSTA:
 Status code:200
 [{"id":"4","nome":"Tommaso","cognome":"Frediani","scuola_id":"3"},{"id":"6","nome":"Adele","cognome":"Baccelli","scuola_id":"3"}];
-RISPOSTA ERRORE:
+RISPOSTA CON ERRORE:
 Status code:404
 {"msg": "Scuola senza docenti"}
 
 ESEMPIO-----visualizzazione di un docente in particolare
-curl http://localhost:8080/scuole/docente/4 
+curl http://localhost:8080/scuole/docente/search/4 
 RICHIESTA:
-GET /scuole/docente/4  ---> DocentiController:search
+GET /scuole/docente/search/4  ---> DocentiController:search
 RISPOSTA:
 Status code:200
 [{"id":"4","nome":"Tommaso","cognome":"Frediani","scuola_id":"3"}];
-RISPOSTA ERRORE:
+RISPOSTA CON ERRORE:
 Status code:404
 {"msg": "Docente non trovato"}
 

@@ -16,7 +16,7 @@ $app->delete('/scuole/destroy', "ScuoleController:destroy");
 
 /*Controller dei docenti*/
 $app->get('/scuole/{scuola_id:\d+}/docenti', "DocentiController:view");
-$app->get('/scuole/docente/{id:\d+}', "DocentiController:search");
+$app->get('/scuole/docente/search/{id:\d+}', "DocentiController:search");
 $app->post('/scuole/docente/create', "DocentiController:create");
 $app->put('/scuole/docente/update', "DocentiController:update");
 $app->delete('/scuole/docente/destroy', "DocentiController:destroy");
