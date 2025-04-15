@@ -1,27 +1,28 @@
--- Creazione tabella classi
-CREATE TABLE `classi` (
+-- Creazione tabella scuole
+CREATE TABLE `scuole` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
-  `sezione` VARCHAR(10) NOT NULL,
-  `anno` INT(4) NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
+  `indirizzo` VARCHAR(100),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Creazione tabella alunni
-CREATE TABLE `alunni` (
+-- Creazione tabella docenti
+CREATE TABLE `docenti` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(20) NOT NULL,
   `cognome` VARCHAR(20) NOT NULL,
-  `classe_id` INT(11) NOT NULL,
+  `scuola_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`classe_id`) REFERENCES `classi`(`id`) ON DELETE CASCADE
+  FOREIGN KEY (`scuola_id`) REFERENCES `scuole`(`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Inserimento dati di esempio
-INSERT INTO `classi` (`sezione`, `anno`) VALUES
-('5A', 2024),
-('5B', 2024);
+-- Inserimento dati di esempio per scuole
+INSERT INTO `scuole` (`nome`, `indirizzo`) VALUES
+('ITIS Meucci', 'Via del Filarete, 17'),
+('Leonardo da Vinci', 'Via Garibaldi, 10');
 
-INSERT INTO `alunni` (`nome`, `cognome`, `classe_id`) VALUES
-('Claudio', 'Benve', 1),
+-- Inserimento dati di esempio per docenti
+INSERT INTO `docenti` (`nome`, `cognome`, `scuola_id`) VALUES
+('Claudio', 'Benvenuti', 1),
 ('Ivan', 'Bruno', 1),
 ('Francesco', 'Bertoli', 2);
